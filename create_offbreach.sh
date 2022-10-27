@@ -1,30 +1,58 @@
-sudo passwd offbreach
-if [ $? -eq 0 ]; then
-        echo "este usuario ja esta cadastrado"
-else
-        echo "este usuario nao esta cadastrado"
-        sudo adduser offbreach
-        sudo usermod -aG sudo offbreach
-        su offbreach
-        cd
+#!/bin/bash
+echo "Este é o script de instalação e configuração do Offbreach"
+echo "O script irá fazer diversas modificações na sua máquina"
+echo "Tem certeza que deseja continuar? S\n"
+read inst
+if [ \"$inst\" == \"s\" ]
+#Verificando e criando usuário
+then echo "Fazendo verificação de usuário"
+getent passwd offbreach
+if [ $? -eq 0 ]
+then echo \“Este usuário já está cadastrado\”
+else echo \"O usuário nao existe, criando usuario\"
+sudo adduser offbreach
+sudo usermod -aG sudo offbreach
+su offbreach
+cd
 fi
 
+#Atualizando repositórios e pacotes
+echo "Atualizando repositórios e pacotes do sistema"
 sudo apt-get update && sudo apt-get upgrade -y
 
+echo "Deseja instalar a interface grafica? S\n"
+sudo apt-get install lxde lxde-core xrdp tigervnc-standalone-server lightdm -y  
+if [ \"$?\"  == \"s\" ]
+echo "Instalando interface gráfica"
+then 
 
-java -version
-if [ $? -eq 0 ]; then
-        echo "o java ja esta instalado"
-else
-        echo "instalando java"
-        sudo apt install default-jre -y
-        echo "java instalado com versao recente"
-        java -version
+#Verificando e instalando o Java
+echo "Verificando versão do Java"
+java --version
+if [ $? -eq 0 ]
+then echo \"O Java já está instalado\"
+else echo \"O Java está não instalado\"
+sudo apt install default-jdk -y
+clear
+echo \"JAVA instalado na versao 11\"
+java --version
+sleep 5
 fi
 
-wget https://github.com/Off-Breach/offbreach-shell/blob/main/offbreach-1.0-SNAPSHOT-jar-with-dependencies.jar
-java -jar offbreach-1.0-SNAPSHOT-jar-with-dependencies.jar
-
-
+echo \"Sera realizado agora, a instalacao cloudfooding, nosso sistema de monitoramento\"
+sleep 4
 clear
-echo "OFFBreach Client instalado com sucesso"
+
+sudo apt update && sudo apt upgrade -y
+clear
+wget github.com/Off-Breach/offbreach-shell/raw/main/offbreach-1.0-SNAPSHOT-jar-with-dependencies.jar
+sudo apt-get install docker.io -y
+sudo systemctl start docker
+sudo systemctl enable docker
+sudo docker pull mysql:5.7
+sudo docker build -t offbreach_img:1.0 .
+sudo docker run -d -p 3306:3306 --name offbreach offbreach_img:1.0
+clear
+
+else echo "A instalação foi cancelada"
+fi

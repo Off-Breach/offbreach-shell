@@ -21,10 +21,12 @@ echo "Atualizando repositórios e pacotes do sistema"
 sudo apt-get update && sudo apt-get upgrade -y
 
 echo "Deseja instalar a interface grafica? S\n"
-sudo apt-get install lxde lxde-core xrdp tigervnc-standalone-server lightdm -y  
-if [ \"$?\"  == \"s\" ]
-echo "Instalando interface gráfica"
-then 
+read inst
+if [ \"$inst\"  == \"s\" ]
+then echo \"Instalando a imagem\"
+sudo apt-get install lxde lxde-core xrdp tigervnc-standalone-server lightdm -y
+else echo
+fi
 
 #Verificando e instalando o Java
 echo "Verificando versão do Java"
@@ -50,6 +52,7 @@ sudo apt-get install docker.io -y
 sudo systemctl start docker
 sudo systemctl enable docker
 sudo docker pull mysql:5.7
+sudo docker run -d -p 3306:3306 --name containerDB -e "MYSQL_DATABESE=offbreach" -e "MYSQL_ROOT_PASSWORD=urubu100" mysql:5.7
 sudo docker build -t offbreach-1.0-SNAPSHOT-jar-with-dependencies.jar
 sudo docker run -d -p 3306:3306 --name offbreach offbreach-1.0-SNAPSHOT-jar-with-dependencies.jar
 clear

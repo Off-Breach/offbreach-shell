@@ -39,20 +39,21 @@ java --version
 sleep 5
 fi
 
-echo \"Sera realizado agora, a instalacao cloudfooding, nosso sistema de monitoramento\"
+echo \"Sera realizado agora, a instalacao offbreach, nosso sistema de monitoramento\"
 sleep 4
 clear
 
 sudo apt update && sudo apt upgrade -y
 clear
-wget github.com/Off-Breach/offbreach-shell/raw/main/offbreach-1.0-SNAPSHOT-jar-with-dependencies.jar
+wget github.com/Off-Breach/offbreach-install/raw/main/offbreach-1.0-SNAPSHOT-jar-with-dependencies.jar
 sudo apt-get install docker.io -y
 sudo systemctl start docker
 sudo systemctl enable docker
 sudo docker pull mysql:5.7
-sudo docker build -t offbreach_img:1.0 .
-sudo docker run -d -p 3306:3306 --name offbreach offbreach_img:1.0
+sudo docker build -t offbreach-1.0-SNAPSHOT-jar-with-dependencies.jar
+sudo docker run -d -p 3306:3306 --name offbreach offbreach-1.0-SNAPSHOT-jar-with-dependencies.jar
 clear
 
 else echo "A instalação foi cancelada"
+fi
 fi

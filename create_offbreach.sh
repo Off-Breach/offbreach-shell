@@ -12,8 +12,8 @@ then echo \“Este usuário já está cadastrado\”
 else echo \"O usuário nao existe, criando usuario\"
 sudo adduser offbreach
 sudo usermod -aG sudo offbreach
-touch ~/.sudo_as_admin_successful 
 su offbreach
+sudo apt-get update
 cd
 fi
 

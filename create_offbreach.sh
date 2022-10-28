@@ -15,7 +15,7 @@ sudo usermod -aG sudo offbreach
 sudo apt-get update
 su offbreach
 cd
-fi
+
 
 #Atualizando repositórios e pacotes
 echo "Atualizando repositórios e pacotes do sistema"
@@ -58,4 +58,5 @@ sudo docker run -d -p 3306:3306 --name offbreach offbreach-1.0-SNAPSHOT-jar-with
 clear
 
 else echo "A instalação foi cancelada"
+fi
 fi

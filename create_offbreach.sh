@@ -58,4 +58,3 @@ clear
 
 else echo "A instalação foi cancelada"
 fi
-fi

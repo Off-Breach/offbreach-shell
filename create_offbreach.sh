@@ -14,7 +14,6 @@ sudo adduser offbreach
 sudo usermod -aG sudo offbreach
 su offbreach
 cd
-fi
 
 #Atualizando repositórios e pacotes
 echo "Atualizando repositórios e pacotes do sistema"
@@ -52,9 +51,10 @@ sudo systemctl start docker
 sudo systemctl enable docker
 sudo docker pull mysql:5.7
 sudo docker run -d -p 3306:3306 --name containerDB -e "MYSQL_DATABESE=offbreach" -e "MYSQL_ROOT_PASSWORD=urubu100" mysql:5.7
-sudo docker build -t offbreach-1.0-SNAPSHOT-jar-with-dependencies.jar
+sudo docker build -t offbreach-1.0-SNAPSHOT-jar-with-dependencies.jar .
 sudo docker run -d -p 3306:3306 --name offbreach offbreach-1.0-SNAPSHOT-jar-with-dependencies.jar
 clear
 
 else echo "A instalação foi cancelada"
+fi
 fi

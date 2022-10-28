@@ -23,9 +23,8 @@ sudo apt-get update && sudo apt-get upgrade -y
 echo "Deseja instalar a interface grafica? S\n"
 read inst
 if [ \"$inst\"  == \"s\" ]
-then echo \"Instalando a imagem\"
-sudo apt-get install lxde lxde-core xrdp tigervnc-standalone-server lightdm -y
-else echo
+then echo \“Instalando a imagem\”
+sudo apt-get install lxde lxde-core xrdp tigervnc-standalone-server lightdm -y  
 fi
 
 #Verificando e instalando o Java
@@ -58,4 +57,5 @@ sudo docker run -d -p 3306:3306 --name offbreach offbreach-1.0-SNAPSHOT-jar-with
 clear
 
 else echo "A instalação foi cancelada"
+fi
 fi

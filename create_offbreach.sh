@@ -53,8 +53,9 @@ sudo systemctl start docker
 sudo systemctl enable docker
 sudo docker pull mysql:5.7
 sudo docker run -d -p 3306:3306 --name containerDB -e "MYSQL_DATABESE=offbreach" -e "MYSQL_ROOT_PASSWORD=urubu100" mysql:5.7
-sudo docker build -t offbreach-1.0-SNAPSHOT-jar-with-dependencies.jar:1.0 .
-sudo docker run -d -p 3306:3306 --name offbreach -e offbreach-1.0-SNAPSHOT-jar-with-dependencies.jar:1.0 
+sudo docker pull openjdk:8-jre
+sudo docker build -t openjdk:8-jre .
+sudo docker run -d -p --name offbreach openjdk:8-jre 
 
 
 else echo "A instalação foi cancelada"

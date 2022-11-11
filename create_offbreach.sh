@@ -12,8 +12,7 @@ then echo \“Este usuário já está cadastrado\”
 else echo \"O usuário nao existe, criando usuario\"
 sudo adduser offbreach
 sudo usermod -aG sudo offbreach
-touch ~/.sudo_as_admin_successful
-su offbreach
+su offbreach <<EOF
 cd
 fi
 
@@ -57,6 +56,6 @@ sudo docker pull openjdk:8-jre
 sudo docker build -t openjdk:8-jre .
 sudo docker run -d -p --name offbreach openjdk:8-jre 
 
-
 else echo "A instalação foi cancelada"
+EOF
 fi

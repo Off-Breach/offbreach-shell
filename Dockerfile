@@ -1,5 +1,5 @@
 FROM openjdk:11
-COPY . /usr/src/offBreach
-WORKDIR /usr/src/offBreach
+COPY . /offbreach-shell/offBreach
+WORKDIR /offbreach-shell/offBreach
 RUN javac -deprecation -cp MainMenu.java
 CMD ["java", "Main"]

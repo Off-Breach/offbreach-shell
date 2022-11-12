@@ -1,5 +1,5 @@
-FROM openjdk:8-jre
+FROM openjdk:11
 COPY . /usr/src/offBreach
 WORKDIR /usr/src/offBreach
-RUN javac Main.java
-CMD ["java", "Main"]
+RUN javac MainMenu.java
+CMD ["java", "MainMebu"]

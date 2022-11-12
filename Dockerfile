@@ -1,2 +1,5 @@
 FROM openjdk:8-jre
-RUN offbreach-1.0-SNAPSHOT-jar-with-dependencies.jar
+COPY . /usr/src/com/offBreach
+WORKDIR /usr/src/com/offBreach
+RUN javac MainMenu.java
+CMD ["java", "Main"]

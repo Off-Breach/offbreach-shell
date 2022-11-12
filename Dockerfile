@@ -1,5 +1,5 @@
 FROM openjdk:11
 COPY . /usr/src/offBreach
 WORKDIR /usr/src/offBreach
-RUN javac -classpath MainMenu.java
+RUN javac -sourcepath './src' -d './bin' -verbose './src/MainMenu.java'
 CMD ["java", "Main"]

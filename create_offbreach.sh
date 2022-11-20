@@ -12,9 +12,7 @@ then echo \“Este usuário já está cadastrado\”
 else echo \"O usuário nao existe, criando usuario\"
 sudo adduser offbreach
 sudo usermod -aG sudo offbreach
-su offbreach
 cd
-
 fi
 
 #Atualizando repositórios e pacotes
@@ -48,12 +46,13 @@ clear
 sudo apt update && sudo apt upgrade -y
 clear
 wget github.com/Off-Breach/offbreach-install/raw/main/offbreach-1.0-SNAPSHOT-jar-with-dependencies.jar
+wget github.com/Off-Breach/offbreach-install/raw/main/offBreach-CLI-1.0-SNAPSHOT-jar-with-dependencies.jar
 sudo apt-get install docker.io -y
 sudo systemctl start docker 
 sudo systemctl enable docker
 sudo docker pull mysql:5.7
 sudo docker run -d -p 3306:3306 --name containerDB -e "MYSQL_DATABESE=offbreach" -e "MYSQL_ROOT_PASSWORD=urubu100" mysql:5.7
-sudo docker build -t offbreach:1.0 .
-sudo docker run -it --name containerJV offbreach:1.0  
+sudo docker build -t offbreach
+sudo docker run -d -t containerJV offbreach
 else echo "A instalação foi cancelada"
 fi

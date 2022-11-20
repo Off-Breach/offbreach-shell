@@ -33,7 +33,7 @@ if [ $? -eq 0 ]
 then echo \"O Java já está instalado\"
 else echo \"O Java está não instalado\"
 sudo apt install default-jdk -y
-clear
+
 echo \"JAVA instalado na versao 11\"
 java --version
 sleep 5
@@ -41,7 +41,7 @@ fi
 
 echo \"Sera realizado agora, a instalacao offbreach, nosso sistema de monitoramento\"
 sleep 4
-clear
+
 
 sudo apt update && sudo apt upgrade -y
 clear

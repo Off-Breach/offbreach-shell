@@ -52,7 +52,7 @@ sudo systemctl start docker
 sudo systemctl enable docker
 sudo docker pull mysql:5.7
 sudo docker run -d -p 3306:3306 --name containerDB -e "MYSQL_DATABESE=offbreach" -e "MYSQL_ROOT_PASSWORD=urubu100" mysql:5.7
-sudo docker build -t offbreach
+sudo docker build -t offbreach .
 sudo docker run -d -t containerJV offbreach
 else echo "A instalação foi cancelada"
 fi
